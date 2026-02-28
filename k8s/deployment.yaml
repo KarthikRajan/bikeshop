@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bike-shop
+  labels:
+    app: bike-shop
 spec:
   replicas: 1
   selector:
@@ -13,7 +15,8 @@ spec:
         app: bike-shop
     spec:
       containers:
-      - name: bike-shop
-        image: karthikrajan/bike-shop:latest
-        ports:
-        - containerPort: 3000
+        - name: bike-shop
+          image: karthikrajan/bike-shop:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
