@@ -1,9 +1,11 @@
-name: Bike Shop Release Pipeline
+name: Bike Shop CI/CD Pipeline
 
 on:
   push:
+    branches:
+      - main
     tags:
-      - 'v*'   # Runs only when tag starts with v
+      - 'v*'
 
 jobs:
   build-and-push:
@@ -25,14 +27,18 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # 4️⃣ Extract version tag from Git
+      # 4️⃣ Extract metadata (handles both branch + tag builds)
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: karthikrajan/bike-shop
           tags: |
+            # If pushing a version tag (v1, v1.0.0)
             type=ref,event=tag
+            # If pushing to main branch
+            type=ref,event=branch
+            # Always update latest
             type=raw,value=latest
 
       # 5️⃣ Build and Push Docker Image
