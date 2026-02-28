@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: bike-shop
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: myapp
+      app: bike-shop
   template:
     metadata:
       labels:
-        app: myapp
+        app: bike-shop
     spec:
       containers:
-        - name: myapp
-          image: <+artifact.image>
-          ports:
-            - containerPort: 80
+      - name: bike-shop
+        image: karthikrajan/bike-shop:latest
+        ports:
+        - containerPort: 3000
