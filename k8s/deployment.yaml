@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: bike-shop
-          image: <+artifacts.primary.image>
+          image: karthikrajan/bike-shop:v1.30
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
