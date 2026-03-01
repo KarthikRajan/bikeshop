@@ -1,15 +1,16 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 
+// Serve static files (CSS, JS, images)
+app.use(express.static(path.join(__dirname, "public")));
+
+// Serve the homepage
 app.get("/", (req, res) => {
-  res.send(`
-    <h1>🚴 Welcome to Karr's Bike Shop</h1>
-    <p>Mountain Bike - ₹25,000</p>
-    <p>Road Bike - ₹30,000</p>
-    <p>Electric Bike - ₹60,000</p>
-  `);
+  res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
+// Start the server
 app.listen(3000, () => {
-  console.log("Bike shop running on port 3000");
+  console.log("🚴 Bike shop running on http://localhost:3000");
 });
