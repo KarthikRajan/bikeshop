@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: bike-shop
-          image: karthikrajan/bike-shop:v1.34
+          image: karthikrajan/bike-shop:v1.36
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
